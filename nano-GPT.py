@@ -143,8 +143,8 @@ class GPT(nn.Module):
 
 class MyGPT(nn.Module):
     """
-    Code developed during the tutorial. Not compatible with pre-trained model, due to diffrent variable names
-    Next step will be to code the training functions, so I can make it work with any input dataset :)
+        Code developed during the tutorial. Not compatible with pre-trained model, due to diffrent variable names
+        Next step will be to code the training functions, so I can make it work with any input dataset :)
 
     """
 
@@ -248,7 +248,9 @@ class MyGPT(nn.Module):
 
 
 def generate(model, new_chars: int, context, context_length: int, int_to_char: dict):
-
+    """
+        Wrapper function to execute the model char by char. Copied from the Notebook correction.
+    """
     result = []
     for i in range(new_chars):
 
@@ -262,8 +264,6 @@ def generate(model, new_chars: int, context, context_length: int, int_to_char: d
         vocab_probabilities = nn.functional.softmax(last_time_step, dim=-1)
 
         # Chosing a likely output among the vocabulary probabilities
-        # The line where you call torch.multinomial(). Pass in the generator as well.        
-        # output_ints = torch.multinomial(vocab_probabilities, 1, generator=generator)
         output_ints = torch.multinomial(vocab_probabilities, 1)
         # generator.set_state(initial_state)
         output_chars = output_ints          
